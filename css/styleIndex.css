@@ -1,0 +1,136 @@
+@import "neu.css";
+
+a:hover{
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--main-background);
+}
+
+.neu {
+  border-radius: 50px;
+  background-color: var(--main-background);
+  box-shadow: var(--shadow-neu-up-main-color);
+  padding: 3px;
+  margin: 25px;
+  display: inline-block;
+}
+
+.neuSub {
+  border-radius: 50px;
+  background: var(--gradient-neu-conc-main-color);
+  box-shadow: var(--shadow-neu-down-main-color);
+  padding: 5px;
+}
+
+.neuConv {
+    margin: 50px;
+  border-radius: 50px;
+  background: var(--main---gradient-neu-conv-main-color);
+  /* box-shadow: var(--shadow-neu-up-main-color); */
+  box-shadow: var(--shadow-neu-invert-main-color);
+  padding: 5px;
+  display: inline-block;
+}
+
+.mainTitle{
+  margin: 20px;
+}
+
+
+[class^="text"]{
+  padding: 0px 10px;
+}
+
+.text-secondTitle{
+  font-size:37px;
+}
+
+.text-mainTitle{
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Asap', sans-serif;
+  font-weight: bolder;
+}
+
+.text-secondTitle{
+  font-family: 'Asap', sans-serif;
+  font-weight: bold;
+}
+
+h5>a{
+  color: black;
+  padding: 5px;
+  font-family:'Montserrat Alternates', sans-serif;
+  font-weight: bold;
+}
+
+.text-confirmed>a:hover{
+  color: var(--confirmed);
+
+}
+.text-recovered>a:hover{
+  color: var(--recovered);
+
+}
+.text-deaths>a:hover{
+  color: var(--deaths);
+
+}
+
+.data{
+  font-family: 'calculator';
+  font-size: 50px;
+  color: var(--third-backgorund);
+  padding: 5px 20px;
+  letter-spacing: 1px;
+}
+em{
+
+  font-size:25px;
+
+}
+
+.ulMenu {
+  position: fixed;
+  top: 30%;
+  right: 40px;
+  list-style: none;
+  border-radius: 50px;
+  background: var(--gradient-neu-conv-second-color);
+  box-shadow: var(--shadow-neu-invert-second-color),var(--shadow-neu-up-main-color);
+  padding-left: 0px;
+  border:50px black;
+}
+
+.homeLi{
+  background-color: var(--third-backgorund);
+  box-shadow:var(--shadow-neu-down-third-color);
+  border-radius: 50.5px 50.5px 0px 0px;
+  margin-top:0px;
+  padding-top: 0px;
+}
+
+li{
+    padding: 15px!important;
+}
+
+li > a {
+  color: white;
+  margin: 40px 10px;
+}
+
+li > a:hover{
+  color: var(--third-backgorund);
+}
+.neu-mobile{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  color: white;
+  background:var(--gradient-neu-conv-second-color);
+  padding:10px;
+  box-shadow:var(--shadow-neu-invert-second-color),var( --shadow-neu-up-main-color);
+}

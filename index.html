@@ -15,7 +15,6 @@
     <!-- main container -->
     <div class="container-fluid">
       <div class="row">
-
         <!-- main colum -->
         <div class="col-sm-12 col-md-10">
 
@@ -28,12 +27,58 @@
             </div>
           </div>
 
-          <!-- mobile menu -->
-          <div class="row d-flex justify-content-center d-sm-block d-md-none">
-            <div class="neu-mobile mobileMenu">
-              <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-              </svg>
+          <!-- ------mobile menu------ -->
+
+          <!-- style="
+              background: var(--gradient-neu-conc-second-color);              
+              box-shadow: var(--shadow-neu-down-second-color);              
+              right: 0;
+              left: 0;
+              margin-right: auto;
+              margin-left: auto;
+              position: fixed;
+            " -->
+
+          <div class="d-sm-block d-md-none mobile-container">
+            <div
+              class="row d-flex text-center justify-content-center d-sm-block d-md-none"
+            >
+
+
+            <!-- style="
+                  background: var(--gradient-neu-conc-third-color);
+                  box-shadow: var(--shadow-neu-down-third-color);
+                " -->
+              <div
+                class="neu-mobile mobileMenu d-inline-block"
+                
+              >
+                <svg
+                  width="2.5em"
+                  height="2.5em"
+                  viewBox="0 0 16 16"
+                  class="bi bi-list"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div class="mobileLinks" style="display: none;">
+              <div class="row text-center justify-content-center">
+                <h4><a href="" class="mobile-opt">HOME</a></h4>
+              </div>
+              <div class="row text-center justify-content-center">
+                <h4><a href="" class="mobile-opt">COUNTRIES</a></h4>
+              </div>
+              <div class="row text-center justify-content-center">
+                <h4><a href="" class="mobile-opt">NEWS</a></h4>
+              </div>
             </div>
           </div>
 
@@ -46,14 +91,23 @@
 
           <!-- options -->
           <div class="options row d-flex justify-content-center">
-            <div class="neu confirmed-option selected">
-              <h5 class="text-confirmed"><a href="#/" style="color: var(--confirmed)">Confirmed</a></h5>
+            <div class="neu confirmed-option selected text-center">
+              <h3 class="text-confirmed">
+                <a href="#/" style="color: var(--confirmed);">Confirmed</a>
+              </h3>
             </div>
-            <div class="neu recovered-option">
-              <h5 class="text-recovered"><a href="#/">Recovered</a></h5>
+            <div class="neu recovered-option text-center">
+              <h3 class="text-recovered"><a href="#/">Recovered</a></h3>
             </div>
-            <div class="neu deaths-option">
-              <h5 class="text-deaths"><a href="#/">Deaths</a></h5>
+            <div class="neu deaths-option text-center">
+              <h3 class="text-deaths"><a href="#/">Deaths</a></h3>
+            </div>
+          </div>
+
+          <!-- loading animation -->
+          <div class="row d-flex justify-content-center">
+            <div class="spinner-grow" role="status" style="display: none;">
+              <span class="sr-only">Loading...</span>
             </div>
           </div>
 
@@ -66,17 +120,16 @@
           <div class="row d-flex justify-content-center">
             <div class="neu">
               <div class="neuSub">
-                <div class="text ">xx/xx/xxx</div>
+                <div class="text dataDate">xx/xx/xxx</div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- desktop menu colum -->
-        <div class="col-2 	 d-none d-sm-none d-md-block">
+        <div class="col-2 d-none d-sm-none d-md-block">
           <div class="menu d-flex justify-content-center">
             <ul class="ulMenu aling-itemes-center">
-
               <!-- home -->
               <li class="text-center homeLi">
                 <a href="#/">
@@ -101,7 +154,7 @@
 
               <!-- charts -->
               <li class="text-center chartsLi">
-                <a href="#/">
+                <a href="html/Charts.html">
                   <svg
                     width="34px"
                     height="34px"

@@ -1,6 +1,6 @@
 @import "neu.css";
 
-a:hover{
+a:hover {
   text-decoration: none;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 .neuConv {
-    margin: 50px;
+  margin: 50px;
   border-radius: 50px;
   background: var(--main---gradient-neu-conv-main-color);
   /* box-shadow: var(--shadow-neu-up-main-color); */
@@ -34,63 +34,62 @@ body {
   display: inline-block;
 }
 
-.mainTitle{
+.mainTitle {
   margin: 20px;
 }
 
-
-[class^="text"]{
+[class^="text"] {
   padding: 0px 10px;
 }
 
-.text-secondTitle{
-  font-size:37px;
+.text-secondTitle {
+  font-size: 37px;
 }
 
-.text-mainTitle{
+.text-mainTitle {
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: 'Asap', sans-serif;
+  font-family: "Asap", sans-serif;
   font-weight: bolder;
 }
 
-.text-secondTitle{
-  font-family: 'Asap', sans-serif;
+.text-secondTitle {
+  font-family: "Asap", sans-serif;
   font-weight: bold;
 }
 
-h5>a{
+.options {
+  padding-right: 50px;
+  justify-content: space-evenly !important;
+}
+
+h3 > a {
   color: black;
   padding: 5px;
-  font-family:'Montserrat Alternates', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
   font-weight: bold;
 }
 
-.text-confirmed>a:hover{
+.text-confirmed > a:hover {
   color: var(--confirmed);
-
 }
-.text-recovered>a:hover{
+.text-recovered > a:hover {
   color: var(--recovered);
-
 }
-.text-deaths>a:hover{
+.text-deaths > a:hover {
   color: var(--deaths);
-
 }
 
-.data{
-  font-family: 'calculator';
+.data {
+  font-family: "calculator";
   font-size: 50px;
   color: var(--third-backgorund);
   padding: 5px 20px;
   letter-spacing: 1px;
 }
-em{
-
-  font-size:25px;
-
+em {
+  font-size: 25px;
 }
 
 .ulMenu {
@@ -98,23 +97,30 @@ em{
   top: 30%;
   right: 40px;
   list-style: none;
-  border-radius: 50px;
-  background: var(--gradient-neu-conv-second-color);
-  box-shadow: var(--shadow-neu-invert-second-color),var(--shadow-neu-up-main-color);
   padding-left: 0px;
-  border:50px black;
+  box-shadow: var(--shadow-neu-up-main-color);
+  border-radius: 50px;
 }
 
-.homeLi{
-  background-color: var(--third-backgorund);
-  box-shadow:var(--shadow-neu-down-third-color);
+.homeLi {
+  background: var(--gradient-neu-conc-third-color);
+  box-shadow: var(--shadow-neu-down-third-color);
   border-radius: 50.5px 50.5px 0px 0px;
-  margin-top:0px;
-  padding-top: 0px;
 }
 
-li{
-    padding: 15px!important;
+.chartsLi {
+  background: var(--gradient-neu-conv-second-color);
+  box-shadow: var(--charts-dark);
+}
+
+.newsLi {
+  border-radius: 0px 0px 50px 50px;
+  background: var(--gradient-neu-conv-second-color);
+  box-shadow: var(--news-dark);
+}
+
+li {
+  padding: 15px !important;
 }
 
 li > a {
@@ -122,15 +128,52 @@ li > a {
   margin: 40px 10px;
 }
 
-li > a:hover{
-  color: var(--third-backgorund);
+li > a:hover {
+  color: var(--hover-menus);
 }
-.neu-mobile{
+.neu-mobile {
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 15px;
   color: white;
-  background:var(--gradient-neu-conv-second-color);
-  padding:10px;
-  box-shadow:var(--shadow-neu-invert-second-color),var( --shadow-neu-up-main-color);
+  background: var(--gradient-neu-conv-second-color);
+  padding: 10px;
+  box-shadow: var(--shadow-neu-invert-second-color),
+    var(--shadow-neu-up-main-color);
+}
+
+.mobile-container {
+  padding: 10px;
+  width: 95vw;
+  border-radius: 25px;
+}
+
+.mobile-opt {
+  color: white;
+}
+
+.mobileLinks .row {
+  margin-bottom: 10px;
+}
+
+.mobile-opt:hover {
+  color: var(--hover-menus);
+}
+
+.spinner-grow {
+  color: var(--third-backgorund);
+}
+
+.animate{
+  animation: fow;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@media only screen and (max-width: 600px) {
+  .options {
+    padding: 0px;
+    flex-direction: column;
+    display: inline-block;
+  }
 }

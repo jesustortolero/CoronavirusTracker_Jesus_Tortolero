@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta />
+    <meta />
+    <meta />
+    <meta />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/styleCharts.css" />
+    <title>Crona Virus Tracker</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="col-sm-12 col-md-10">
+        <!-- main title -->
+        <div class="row">
+          <div class="neu mainTitle">
+            <div class="neuSub">
+              <h1 class="text-mainTitle text-center">Covid-19 Tracker</h1>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------mobile menu------ -->
+
+
+        <!-- style="
+              background: var(--gradient-neu-conc-second-color);              
+              box-shadow: var(--shadow-neu-down-second-color);              
+              right: 0;
+              left: 0;
+              margin-right: auto;
+              margin-left: auto;
+              position: fixed;
+            " -->
+
+        <div class="d-sm-block d-md-none mobile-container">
+          <div
+            class="row d-flex text-center justify-content-center d-sm-block d-md-none"
+          >
+            <!-- style="
+                  background: var(--gradient-neu-conc-third-color);
+                  box-shadow: var(--shadow-neu-down-third-color);
+                " -->
+            <div class="neu-mobile mobileMenu d-inline-block">
+              <svg
+                width="2.5em"
+                height="2.5em"
+                viewBox="0 0 16 16"
+                class="bi bi-list"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="mobileLinks" style="display: none;">
+            <div class="row text-center justify-content-center">
+              <h4><a href="" class="mobile-opt">HOME</a></h4>
+            </div>
+            <div class="row text-center justify-content-center">
+              <h4><a href="" class="mobile-opt">COUNTRIES</a></h4>
+            </div>
+            <div class="row text-center justify-content-center">
+              <h4><a href="" class="mobile-opt">NEWS</a></h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- desktop view -->
+        <div class="row">
+          <div class="neu col-md-11 col-lg-12">
+            <!-- Countries select -->
+            <div class="input-group p-4">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Countries</label
+                >
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option class="initialOption" selected>Choose...</option>
+              </select>
+            </div>
+
+            <!-- loading animation -->
+            <div class="row d-flex justify-content-center">
+              <div class="spinner-grow" role="status" style="display: none;">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+
+            <!-- Error and no data massage -->
+
+            <div class="row aling-itemes-center justify-content-center errorRow" style="display: none;">
+              <h3 class="errorTitle text-center p-5"></h3>
+            </div>
+
+            <!-- canva charts -->
+            <canvas
+              class="d-none d-md-block p-4"
+              id="myChart"
+              width="400"
+              height="200"
+            ></canvas>
+          </div>
+        </div>
+
+        <!-- mobile view -->
+        <div class="d-sm-block d-md-none">
+          <!-- second title -->
+          <div class="row d-flex justify-content-center">
+            <div class="neu secondTitle">
+              <h2 class="text-secondTitle text-center">Cases by Country</h2>
+            </div>
+          </div>
+
+          <!-- loading animation -->
+          <div class="row d-flex justify-content-center">
+            <div class="spinner-grow" role="status" style="display: none;">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+          <!-- data display -->
+          <div class="row d-flex justify-content-center">
+            <div class="neuConv data text-center">0000000 <em>ppl.</em></div>
+          </div>
+
+          <!-- options -->
+          <div class="options row d-flex justify-content-center">
+            <div class="neu confirmed-option selected text-center">
+              <h3 class="text-confirmed">
+                <a href="#/" style="color: var(--confirmed);">Confirmed</a>
+              </h3>
+            </div>
+            <div class="neu recovered-option text-center">
+              <h3 class="text-recovered"><a href="#/">Recovered</a></h3>
+            </div>
+            <div class="neu deaths-option text-center">
+              <h3 class="text-deaths"><a href="#/">Deaths</a></h3>
+            </div>
+          </div>
+
+          <!-- date display -->
+          <div class="row d-flex justify-content-center">
+            <div class="neu">
+              <div class="neuSub">
+                <div class="text dataDate">xx/xx/xxx</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- desktop menu -->
+      <div class="col-2 d-none d-sm-none d-md-block">
+        <div class="menu d-flex justify-content-center">
+          <ul class="ulMenu aling-itemes-center">
+            <!-- home -->
+            <li class="text-center homeLi">
+              <a href="../index.html">
+                <svg
+                  width="34px"
+                  height="34px"
+                  viewBox="0 0 16 16"
+                  class="bi bi-house-door-fill"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <!-- charts -->
+            <li class="text-center chartsLi">
+              <a href="html/Charts.html">
+                <svg
+                  width="34px"
+                  height="34px"
+                  viewBox="0 0 16 16"
+                  class="bi bi-graph-up"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M14.39 4.312L10.041 9.75 7 6.707l-3.646 3.647-.708-.708L7 5.293 9.959 8.25l3.65-4.563.781.624z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4h-3.5a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <!-- news -->
+            <li class="text-center newsLi">
+              <a href="#/">
+                <svg
+                  width="34px"
+                  height="34px"
+                  viewBox="0 0 16 16"
+                  class="bi bi-newspaper"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M0 2A1.5 1.5 0 0 1 1.5.5h11A1.5 1.5 0 0 1 14 2v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 0 14V2zm1.5-.5A.5.5 0 0 0 1 2v12a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-.5-.5h-11z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.5 3a.5.5 0 0 1 .5.5V14a1.5 1.5 0 0 1-1.5 1.5h-3v-1h3a.5.5 0 0 0 .5-.5V3.5a.5.5 0 0 1 .5-.5z"
+                  />
+                  <path
+                    d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../js/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/charts.js"></script>
+  </body>
+</html>

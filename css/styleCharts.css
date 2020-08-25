@@ -1,0 +1,22 @@
+@import "neu.css";
+@import "styleIndex.css";
+
+.homeLi{
+
+    background: var(--gradient-neu-conv-second-color);
+    box-shadow: var(--home-dark);
+}
+
+.chartsLi{
+
+    background: var(--gradient-neu-conc-third-color);
+    box-shadow: var(--shadow-neu-down-third-color);
+
+}
+
+.errorTitle{
+    font-family: calculator;
+    color: var(--third-backgorund);
+    font-size:40px;
+    letter-spacing: 1px;
+}

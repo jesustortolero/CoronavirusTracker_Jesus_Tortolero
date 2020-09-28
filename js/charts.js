@@ -143,7 +143,6 @@ $(function () {
 
   /* --------------------On Change Select Listener-------------------- */
   $(".custom-select").on("change", () => {
-    console.log("listener change working");
 
     /* --------------------Country Data Ajax Petition-------------------- */
 
@@ -187,17 +186,12 @@ $(function () {
 
         /* --------------------Mobile message--------------------*/
         if (data.length == 0 && $(window).width() < 426) {
-          console.log("holis");
           $(".data").text(
             `There is no data for ${$("#inputGroupSelect01 :selected").text()}`
           );
         }
 
         /* --------------------Desktop Data Display-------------------- */
-
-        console.log("window width", $(window).width());
-
-        console.log(data.length);
         const dataPerMonth = {};
         if (data.length > 0) {
           /* --------------------Data Arrangement for DataPerMonth-------------------- */
@@ -240,7 +234,6 @@ $(function () {
 
           /* --------------------Chart Data Assignment-------------------- */
           Object.keys(dataPerMonth).forEach((element) => {
-            console.log("chart lables: ", myChart.data.labels);
 
             switch (element.slice(5, 7)) {
               case "01":
@@ -260,7 +253,6 @@ $(function () {
                 pushData(element);
                 break;
               case "05":
-                console.log("dias");
                 myChart.data.labels.push(`May - ${dataPerMonth[element].Date}`);
                 pushData(element);
                 break;
@@ -295,16 +287,9 @@ $(function () {
                 pushData(element);
                 break;
             }
-
-            console.log(dataPerMonth);
           });
 
           /* ---------------------Mobile View--------------------- */
-
-          console.log(
-            "last element",
-            data[data.length - 1].Date.slice(0, 10).replace(/-/g, "/")
-          );
 
           /* --------------------Date Display-------------------- */
           $(".dataDate").text(
@@ -317,7 +302,6 @@ $(function () {
           data.forEach((element) => {
             if (totalCasesByMonth.Deaths) {
               totalCasesByMonth["Deaths"] += element.Deaths;
-              console.log(typeof element.Deaths, "muertes: ", element.Deaths);
               totalCasesByMonth["Confirmed"] += element.Confirmed;
               totalCasesByMonth["Recovered"] += element.Recovered;
             } else {

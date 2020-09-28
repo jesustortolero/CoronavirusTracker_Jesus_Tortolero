@@ -3,10 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta />
-    <meta />
-    <meta />
-    <meta />
+    <meta
+      name="description"
+      content="Covis-19 cases by country, it display data through charts in desktop mode and total cases in mobile mode"
+    />
+    <meta
+      name="keywords"
+      content="Covid-19, corona virus, tracking, app, cases, pandemic, quarentine, charts"
+    />
+    <meta name="author" content="Jesus Tortolero" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/styleCharts.css" />
     <title>Crona Virus Tracker</title>
@@ -15,7 +20,7 @@
   <body>
     <div class="container-fluid">
       <div class="col-sm-12 col-md-10">
-        <!-- main title -->
+        <!-- --------------------Main Title-------------------- -->
         <div class="row">
           <div class="neu mainTitle">
             <div class="neuSub">
@@ -24,27 +29,14 @@
           </div>
         </div>
 
-        <!-- ------mobile menu------ -->
-
-
-        <!-- style="
-              background: var(--gradient-neu-conc-second-color);              
-              box-shadow: var(--shadow-neu-down-second-color);              
-              right: 0;
-              left: 0;
-              margin-right: auto;
-              margin-left: auto;
-              position: fixed;
-            " -->
+        <!-- --------------------Mobile Menu-------------------- -->
 
         <div class="d-sm-block d-md-none mobile-container">
+
+          <!-- --------------------Mobile Menu Icon-------------------- -->
           <div
-            class="row d-flex text-center justify-content-center d-sm-block d-md-none"
+            class="row d-flex text-center justify-content-center d-sm-block d-md-none mr-3"
           >
-            <!-- style="
-                  background: var(--gradient-neu-conc-third-color);
-                  box-shadow: var(--shadow-neu-down-third-color);
-                " -->
             <div class="neu-mobile mobileMenu d-inline-block">
               <svg
                 width="2.5em"
@@ -61,21 +53,25 @@
               </svg>
             </div>
           </div>
+          <!-- --------------------Mobile Menu Options-------------------- -->
+          <div class="mobileLinks" style="display: none">
 
-          <div class="mobileLinks" style="display: none;">
+            <!-- --------------------HOME-------------------- -->
             <div class="row text-center justify-content-center">
               <h4><a href="" class="mobile-opt">HOME</a></h4>
             </div>
+            <!-- --------------------COUNTRIES-------------------- -->
             <div class="row text-center justify-content-center">
               <h4><a href="" class="mobile-opt">COUNTRIES</a></h4>
             </div>
+            <!-- --------------------NEWS-------------------- -->
             <div class="row text-center justify-content-center">
               <h4><a href="" class="mobile-opt">NEWS</a></h4>
             </div>
           </div>
         </div>
 
-        <!-- desktop view -->
+        <!-- --------------------Desktop View-------------------- -->
         <div class="row">
           <div class="neu col-md-11 col-lg-12">
             <!-- Countries select -->
@@ -90,20 +86,23 @@
               </select>
             </div>
 
-            <!-- loading animation -->
+            <!-- --------------------Loading Animation-------------------- -->
             <div class="row d-flex justify-content-center">
-              <div class="spinner-grow" role="status" style="display: none;">
+              <div class="spinner-grow" role="status" style="display: none">
                 <span class="sr-only">Loading...</span>
               </div>
             </div>
 
-            <!-- Error and no data massage -->
+            <!-- --------------------Error and No Data Massage-------------------- -->
 
-            <div class="row aling-itemes-center justify-content-center errorRow" style="display: none;">
+            <div
+              class="row aling-itemes-center justify-content-center errorRow"
+              style="display: none"
+            >
               <h3 class="errorTitle text-center p-5"></h3>
             </div>
 
-            <!-- canva charts -->
+            <!-- --------------------Canva Charts-------------------- -->
             <canvas
               class="d-none d-md-block p-4"
               id="myChart"
@@ -113,43 +112,47 @@
           </div>
         </div>
 
-        <!-- mobile view -->
+        <!-- --------------------Mobile View-------------------- -->
         <div class="d-sm-block d-md-none">
-          <!-- second title -->
+          <!-- --------------------Second Title-------------------- -->
           <div class="row d-flex justify-content-center">
             <div class="neu secondTitle">
               <h2 class="text-secondTitle text-center">Cases by Country</h2>
             </div>
           </div>
 
-          <!-- loading animation -->
+          <!-- --------------------Loading Animation-------------------- -->
           <div class="row d-flex justify-content-center">
-            <div class="spinner-grow" role="status" style="display: none;">
+            <div class="spinner-grow" role="status" style="display: none">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
 
-          <!-- data display -->
+          <!-- --------------------Data Display-------------------- -->
           <div class="row d-flex justify-content-center">
             <div class="neuConv data text-center">0000000 <em>ppl.</em></div>
           </div>
 
-          <!-- options -->
+          <!-- --------------------Options-------------------- -->
           <div class="options row d-flex justify-content-center">
+
+            <!-- --------------------CONFIRMED-------------------- -->
             <div class="neu confirmed-option selected text-center">
               <h3 class="text-confirmed">
-                <a href="#/" style="color: var(--confirmed);">Confirmed</a>
+                <a href="#/" style="color: var(--confirmed)">Confirmed</a>
               </h3>
             </div>
+            <!-- --------------------RECOVERED-------------------- -->
             <div class="neu recovered-option text-center">
               <h3 class="text-recovered"><a href="#/">Recovered</a></h3>
             </div>
+            <!-- --------------------DEATHS-------------------- -->
             <div class="neu deaths-option text-center">
               <h3 class="text-deaths"><a href="#/">Deaths</a></h3>
             </div>
           </div>
 
-          <!-- date display -->
+          <!-- --------------------Date Display-------------------- -->
           <div class="row d-flex justify-content-center">
             <div class="neu">
               <div class="neuSub">
@@ -160,11 +163,11 @@
         </div>
       </div>
 
-      <!-- desktop menu -->
+      <!-- --------------------Desktop Menu-------------------- -->
       <div class="col-2 d-none d-sm-none d-md-block">
         <div class="menu d-flex justify-content-center">
           <ul class="ulMenu aling-itemes-center">
-            <!-- home -->
+            <!-- --------------------Home-------------------- -->
             <li class="text-center homeLi">
               <a href="../index.html">
                 <svg
@@ -186,7 +189,7 @@
               </a>
             </li>
 
-            <!-- charts -->
+            <!-- --------------------Charts-------------------- -->
             <li class="text-center chartsLi">
               <a href="html/Charts.html">
                 <svg
@@ -209,9 +212,9 @@
               </a>
             </li>
 
-            <!-- news -->
+            <!-- --------------------News-------------------- -->
             <li class="text-center newsLi">
-              <a href="#/">
+              <a href="News.html">
                 <svg
                   width="34px"
                   height="34px"

@@ -1,5 +1,5 @@
 :root {
-  /* base colors */
+  /* --------------------Base Colors-------------------- */
   --main-background: #f1f7f7;
   --secondary-backgrond: #151413;
   --third-backgorund: #fda866;
@@ -9,7 +9,7 @@
 
   --hover-menus: #ffe4da;
 
-  /* gratdients */
+  /* --------------------Gratdients-------------------- */
 
   --gradient-neu-conc-main-color: linear-gradient(145deg, #d9dede, #fefefe);
   --gradient-neu-conv-main-color: linear-gradient(145deg, #fefefe, #d9dede);
@@ -39,7 +39,7 @@
     rgba(253, 168, 102, 1) 77%
   );
 
-  /* shadows */
+  /* --------------------Shadows-------------------- */
 
   --shadow-neu-up-main-color: 9px 9px 9px #d9dede, -9px -9px 12px #fefefe;
   --shadow-neu-down-main-color: inset 9px 9px 12px #d9dede,
@@ -53,7 +53,7 @@
   --shadow-neu-invert-second-color: inset 9px 9px 12px #34312f,
     inset -5px -5px 12px #0b0a0a;
 
-    /* menu shadows */
+  /* --------------------Menu Shadows-------------------- */
   --home-dark: inset 9px 9px 12px #34312f, inset -5px 11px 12px #0b0a0a;
   --charts-dark: inset 9px 0px 12px #34312f, inset -5px 0px 12px #0b0a0a;
   --news-dark: inset 9px -11px 12px #34312f, inset -5px -5px 12px #0b0a0a;
@@ -63,7 +63,7 @@
     inset -6px -6px 9px -1px #febaa0;
 }
 
-/* fonts */
+/* --------------------Fonts-------------------- */
 
 @font-face {
   font-family: "Molengo", sans-serif;
@@ -85,30 +85,20 @@
   src: url("../fonts/pocket_calcuatlor_tt.ttf");
 }
 
-/* animations */
+/* --------------------Animations-------------------- */
 
-@keyframes fow{
+@keyframes fow {
 
-  from{
-    background:rgba(0, 0, 0, 0);
-    box-shadow:none;    
-  }
-
-  to{
-    background: var(--gradient-neu-conc-second-color);  
-    box-shadow: var(--shadow-neu-down-second-color); 
+  to {
+    background: var(--gradient-neu-conc-second-color);
+    box-shadow: var(--shadow-neu-down-second-color);
   }
 }
 
 @keyframes back {
 
-  from{
-    background: var(--gradient-neu-conc-second-color);  
-    box-shadow: var(--shadow-neu-down-second-color); 
-  }
-
-  to{
-    background:rgba(0, 0, 0, 0);
-    box-shadow:none;    
+  to {
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
   }
 }

@@ -8,6 +8,7 @@ body {
   background-color: var(--main-background);
 }
 
+/* --------------------Neumorphism Effects-------------------- */
 .neu {
   border-radius: 50px;
   background-color: var(--main-background);
@@ -34,36 +35,40 @@ body {
   display: inline-block;
 }
 
+/* --------------------Main Tittle Appearance-------------------- */
 .mainTitle {
   margin: 20px;
+}
+
+.text-mainTitle {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Asap", sans-serif;
+  font-weight: bolder;
 }
 
 [class^="text"] {
   padding: 0px 10px;
 }
 
-.text-secondTitle {
-  font-size: 37px;
-}
 
-.text-mainTitle {
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: "Asap", sans-serif;
-  font-weight: bolder;
-}
-
+/* --------------------Second Tittle Appearance-------------------- */
 .text-secondTitle {
   font-family: "Asap", sans-serif;
   font-weight: bold;
+  font-size: 37px;
 }
 
+
+/* --------------------Options Arragement-------------------- */
 .options {
   padding-right: 50px;
   justify-content: space-evenly !important;
 }
 
+/* --------------------H3 Hyperlink Appearance-------------------- */
 h3 > a {
   color: black;
   padding: 5px;
@@ -71,6 +76,7 @@ h3 > a {
   font-weight: bold;
 }
 
+/* --------------------Options Bottons Appearance-------------------- */
 .text-confirmed > a:hover {
   color: var(--confirmed);
 }
@@ -81,6 +87,7 @@ h3 > a {
   color: var(--deaths);
 }
 
+/* -------------------Data Display Appearance------------------- */
 .data {
   font-family: "calculator";
   font-size: 50px;
@@ -92,6 +99,8 @@ em {
   font-size: 25px;
 }
 
+
+/* --------------------Desktop Appearance-------------------- */
 .ulMenu {
   position: fixed;
   top: 30%;
@@ -131,6 +140,8 @@ li > a {
 li > a:hover {
   color: var(--hover-menus);
 }
+
+/* --------------------Mobile Menu Appearance-------------------- */
 .neu-mobile {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -146,6 +157,7 @@ li > a:hover {
   padding: 10px;
   width: 95vw;
   border-radius: 25px;
+  z-index: 1;
 }
 
 .mobile-opt {
@@ -160,14 +172,32 @@ li > a:hover {
   color: var(--hover-menus);
 }
 
+/* --------------------Loading Spinner Color-------------------- */
 .spinner-grow {
   color: var(--third-backgorund);
 }
 
-.animate{
+
+/* --------------------Mobile Menu Animation-------------------- */
+.fow {
   animation: fow;
   animation-duration: 1s;
   animation-fill-mode: forwards;
+}
+
+.back {
+  animation: back;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+
+/* --------------------Error Tittle Appearance-------------------- */
+.errorTitle{
+  font-family: calculator;
+  color: var(--third-backgorund);
+  font-size:40px;
+  letter-spacing: 1px;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,32 +1,39 @@
 $(function () {
-  console.log($(".mobile-container").css("box-shadow"));
 
-  /* mobile menu click listener */
+  /* --------------------Mobile Menu Click Listener-------------------- */
   $(".mobileMenu").click(() => {
+    console.log($(".mobile-container").attr("class"));
+
     $(".mobileLinks").toggle(1000);
 
-    if (!$(".mobileMenu").hasClass("animated")) {
-      $(".mobile-container").addClass("animate");
+    if (!$(".mobile-container").hasClass("fow")) {
+      $(".mobile-container").addClass("fow");
       $(".mobile-container").css({
-        "right": "2.5%",
+        right: "2.5%",
         position: "fixed",
       });
 
-      $(".secondTitle").css("margin-top","145px")
+      $(".secondTitle").css("margin-top", "145px");
 
       $(".mobileMenu").css({
         background: "var(--gradient-neu-conc-third-color)",
         "box-shadow": "var(--shadow-neu-down-third-color)",
       });
     } else {
+      console.log("else statement");
 
-      $(".animate").css({"animation":"back"})
-
-
+      $(".fow").addClass("back");
+      $(".fow").removeClass("fow");
+      
+          $(".animate").removeAttr("style");
+          $(".mobileMenu").removeAttr("style");
+          $(".mobile-container").removeAttr("style");
+          $(".secondTitle").removeAttr("style");
+          $(".mobile-container").removeClass("back");
     }
   });
 
-  /* ajax petition */
+  /* --------------------Ajax Data Petition-------------------- */
   $.ajax({
     url: "https://api.covid19api.com/summary",
     type: "GET",
@@ -39,21 +46,21 @@ $(function () {
       $(".data").text("loading...");
     },
 
-    /* completed (stop loading animation) */
+    /* --------------------Completed (stop loading animation)-------------------- */
     complete: () => {
       $(".spinner-grow").hide();
     },
 
     success: (data) => {
-      /* initial setup */
+      /* --------------------Initial Data Setup-------------------- */
       $(".data").html(
         `${data.Global.TotalConfirmed.toLocaleString("en")} <em>ppl.<em>`
       );
 
-      /* date display */
+      /* --------------------Date Display-------------------- */
       $(".dataDate").text(data.Date.slice(0, 10).replace(/-/g, "/"));
 
-      /* confirmed click listener */
+      /* --------------------Confirmed Click Listener-------------------- */
       $(".confirmed-option").click(() => {
         $(".confirmed-option").addClass("selected");
         $(".text-confirmed > a").css("color", "var(--confirmed)");
@@ -71,7 +78,7 @@ $(function () {
         });
       });
 
-      /* recovered click listener */
+      /* --------------------Recovered Click Listener-------------------- */
       $(".recovered-option").click(() => {
         $(".recovered-option").addClass("selected");
         $(".text-recovered > a").css("color", "var(--recovered)");
@@ -89,7 +96,7 @@ $(function () {
         });
       });
 
-      /* deaths click listener */
+      /* --------------------Deaths Click Listener-------------------- */
       $(".deaths-option").click(() => {
         $(".deaths-option").addClass("selected");
         $(".text-deaths > a").css("color", "var(--deaths)");
@@ -108,7 +115,7 @@ $(function () {
       });
     },
 
-    /* error (display message) */
+    /* --------------------Error (Display Message)-------------------- */
     error: (jqXHR, textStatus, errorThrown) => {
       $(".data").text(
         "There has been a problem, please refresh your browser or try again later."

@@ -1,0 +1,38 @@
+@import "neu.css";
+@import "styleIndex.css";
+
+/* --------------------Desktop Menu Appearance-------------------- */
+.homeLi {
+  background: var(--gradient-neu-conv-second-color);
+  box-shadow: var(--home-dark);
+}
+
+.newsLi {
+  background: var(--gradient-neu-conc-third-color);
+  box-shadow: var(--shadow-neu-down-third-color);
+}
+
+/* -------------------News Images (border raudius)------------------- */
+.image {
+  border-radius: 15px;
+}
+
+/* --------------------Hyperlink Color-------------------- */
+a {
+  color: black;
+}
+
+
+/* --------------------Hyperlink Hover-------------------- */
+a:hover {
+  color: var(--third-backgorund);
+}
+
+/* --------------------Mobile Brakepoint-------------------- */
+
+@media only screen and (max-width: 600px) {
+  .image{
+    margin-top: 10px;
+    border-radius: 20px;
+  }
+}

@@ -1,6 +1,38 @@
 $(function () {
+  /* --------------------Mobile Menu Click Listener-------------------- */
+  $(".mobileMenu").click(() => {
+    console.log($(".mobile-container").attr("class"));
 
-  /* Initial chart */
+    $(".mobileLinks").toggle(1000);
+
+    if (!$(".mobile-container").hasClass("fow")) {
+      $(".mobile-container").addClass("fow");
+      $(".mobile-container").css({
+        right: "2.5%",
+        position: "fixed",
+      });
+
+      $(".secondTitle").css("margin-top", "145px");
+
+      $(".mobileMenu").css({
+        background: "var(--gradient-neu-conc-third-color)",
+        "box-shadow": "var(--shadow-neu-down-third-color)",
+      });
+    } else {
+      console.log("else statement");
+
+      $(".fow").addClass("back");
+      $(".fow").removeClass("fow");
+
+      $(".animate").removeAttr("style");
+      $(".mobileMenu").removeAttr("style");
+      $(".mobile-container").removeAttr("style");
+      $(".secondTitle").removeAttr("style");
+      $(".mobile-container").removeClass("back");
+    }
+  });
+
+  /* --------------------Initial Chart-------------------- */
   var ctx = document.getElementById("myChart").getContext("2d");
   var myChart = new Chart(ctx, {
     type: "line",
@@ -81,19 +113,18 @@ $(function () {
     },
   });
 
-  /* Countries Ajax pettition */
+  /* --------------------Countries Ajax Petition-------------------- */
   $.ajax({
     url: "https://api.covid19api.com/countries",
     type: "GET",
     data: {},
     beforeSend: () => {
-      $(".initialOption").text("Loadin..");
+      $(".initialOption").text("Loading...");
     },
     success: (data) => {
       $(".initialOption").text("Choose...");
 
-
-      /*  */
+      /* -------------------- */
       let countries = {};
       data.forEach((element) => {
         countries[element.Country] = element.Slug;
@@ -112,10 +143,11 @@ $(function () {
     },
   });
 
-  /* change select listener */
+  /* --------------------On Change Select Listener-------------------- */
   $(".custom-select").on("change", () => {
     console.log("listener change working");
-    /* data display ajax petition */
+
+    /* --------------------Country Data Ajax Petition-------------------- */
 
     if ($("#inputGroupSelect01 :selected").val() == "Choose...") return;
 
@@ -125,19 +157,24 @@ $(function () {
       ).val()}`,
       type: "GET",
       data: {},
-      beforeSend: () => {},
-      complete: () => {},
+      beforeSend: () => {
+        /* --------------------Show Loading Animation-------------------- */
+        if ($(window).width() > 425) {
+          $(".loading1").show();
+        }else{
+          $(".loading2").show();
+        }
+      },
+      complete: () => {
+          /* --------------------Hide Loading Animation-------------------- */
+          $(".loading1, .loading2").hide();
+      },
 
       success: (data) => {
-        console.log("data: ", data);
-
-        /* desktop data display */
-
-        console.log("window width", $(window).width());
-
-        if (data.length == 0) {
-          console.log("data == 0");
-
+        
+        /* --------------------No Data Message Display-------------------- */
+        /* --------------------Desktop Message-------------------- */
+        if (data.length == 0 && $(window).width() > 425) {
           $(".errorTitle").text(
             `There is no data for ${$("#inputGroupSelect01 :selected").text()}`
           );
@@ -149,193 +186,229 @@ $(function () {
           $("#myChart").addClass("d-md-block");
           $(".errorRow").hide();
         }
+
+        /* --------------------Mobile message--------------------*/
+        if (data.length == 0 && $(window).width() < 426) {
+          console.log("holis");
+          $(".data").text(
+            `There is no data for ${$("#inputGroupSelect01 :selected").text()}`
+          );
+        }
+
+        /* --------------------Desktop Data Display-------------------- */
+
+        console.log("window width", $(window).width());
+
+        console.log(data.length);
         const dataPerMonth = {};
+        if (data.length > 0) {
+          /* --------------------Data Arrangement for DataPerMonth-------------------- */
+          data.forEach((element) => {
+            if (dataPerMonth[element.Date.slice(0, 7)]) {
+              dataPerMonth[element.Date.slice(0, 7)].Active += element.Active;
+              dataPerMonth[element.Date.slice(0, 7)].Deaths += element.Deaths;
+              dataPerMonth[element.Date.slice(0, 7)].Confirmed +=
+                element.Confirmed;
+              dataPerMonth[element.Date.slice(0, 7)].Recovered +=
+                element.Recovered;
+            } else {
+              dataPerMonth[element.Date.slice(0, 7)] = {
+                Date: element.Date.slice(0, 4),
+                Active: element.Active,
+                Deaths: element.Deaths,
+                Confirmed: element.Confirmed,
+                Recovered: element.Recovered,
+              };
+            }
+          });
 
-        data.forEach((element) => {
-          if (dataPerMonth[element.Date.slice(0, 7)]) {
-            dataPerMonth[element.Date.slice(0, 7)].Active += element.Active;
-            dataPerMonth[element.Date.slice(0, 7)].Deaths += element.Deaths;
-            dataPerMonth[element.Date.slice(0, 7)].Confirmed +=
-              element.Confirmed;
-            dataPerMonth[element.Date.slice(0, 7)].Recovered +=
-              element.Recovered;
-          } else {
-            dataPerMonth[element.Date.slice(0, 7)] = {
-              Date: element.Date.slice(0, 4),
-              Active: element.Active,
-              Deaths: element.Deaths,
-              Confirmed: element.Confirmed,
-              Recovered: element.Recovered,
-            };
+          /* ----------------------Label Cleaner---------------------- */
+          if (myChart.data.labels.length > 0) {
+            myChart.data.labels = [];
+
+            myChart.data.datasets[0].data = [];
+            myChart.data.datasets[1].data = [];
+            myChart.data.datasets[2].data = [];
+            myChart.data.datasets[3].data = [];
           }
-        });
 
-        if (myChart.data.labels.length > 0) {
-          myChart.data.labels = [];
+          function pushData(item) {
+            myChart.data.datasets[0].data.push(dataPerMonth[item].Active);
+            myChart.data.datasets[1].data.push(dataPerMonth[item].Confirmed);
+            myChart.data.datasets[2].data.push(dataPerMonth[item].Recovered);
+            myChart.data.datasets[3].data.push(dataPerMonth[item].Deaths);
+            myChart.update();
+          }
 
-          myChart.data.datasets[0].data = [];
-          myChart.data.datasets[1].data = [];
-          myChart.data.datasets[2].data = [];
-          myChart.data.datasets[3].data = [];
+          /* --------------------Chart Data Assignment-------------------- */
+          Object.keys(dataPerMonth).forEach((element) => {
+            console.log("chart lables: ", myChart.data.labels);
+
+            switch (element.slice(5, 7)) {
+              case "01":
+                myChart.data.labels.push(`Jan - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "02":
+                myChart.data.labels.push(`Feb - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "03":
+                myChart.data.labels.push(`Mar - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "04":
+                myChart.data.labels.push(`Apr - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "05":
+                console.log("dias");
+                myChart.data.labels.push(`May - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "06":
+                myChart.data.labels.push(`Jun - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "07":
+                myChart.data.labels.push(`Jul - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "08":
+                myChart.data.labels.push(`Aug - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "09":
+                myChart.data.labels.push(
+                  `Sept - ${dataPerMonth[element].Date}`
+                );
+                pushData(element);
+                break;
+              case "10":
+                myChart.data.labels.push(`Oct - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "11":
+                myChart.data.labels.push(`Nov - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+              case "12":
+                myChart.data.labels.push(`Dec - ${dataPerMonth[element].Date}`);
+                pushData(element);
+                break;
+            }
+
+            console.log(dataPerMonth);
+          });
+
+          /* ---------------------Mobile View--------------------- */
+
+          console.log(
+            "last element",
+            data[data.length - 1].Date.slice(0, 10).replace(/-/g, "/")
+          );
+
+          /* --------------------Date Display-------------------- */
+          $(".dataDate").text(
+            data[data.length - 1].Date.slice(0, 10).replace(/-/g, "/")
+          );
+
+          const totalCasesByMonth = {};
+
+          /* --------------------Data Arrangement for totalCasesByMonth-------------------- */
+          data.forEach((element) => {
+            if (totalCasesByMonth.Deaths) {
+              totalCasesByMonth["Deaths"] += element.Deaths;
+              console.log(typeof element.Deaths, "muertes: ", element.Deaths);
+              totalCasesByMonth["Confirmed"] += element.Confirmed;
+              totalCasesByMonth["Recovered"] += element.Recovered;
+            } else {
+              totalCasesByMonth["Deaths"] = element.Deaths;
+              totalCasesByMonth["Confirmed"] = element.Confirmed;
+              totalCasesByMonth["Recovered"] = element.Recovered;
+            }
+          });
+
+          /* --------------------Initial Data Display-------------------- */
+          $(".data").html(
+            `${totalCasesByMonth.Confirmed.toLocaleString("en")} <em>ppl.<em>`
+          );
+
+          /* ---------------------CLick Listeners Update Display--------------------- */
+
+          /* --------------------Confirmed CLick Listener-------------------- */
+          $(".confirmed-option").click(() => {
+            $(".confirmed-option").addClass("selected");
+            $(".text-confirmed > a").css("color", "var(--confirmed)");
+            $(".text-recovered > a").removeAttr("style");
+            $(".text-deaths > a").removeAttr("style");
+
+            $(".recovered-option").removeClass("selected");
+            $(".deaths-option").removeClass("selected");
+
+            $(".data").fadeOut("slow", () => {
+              $(".data").html(
+                `${totalCasesByMonth.Confirmed.toLocaleString(
+                  "en"
+                )} <em>ppl.<em>`
+              );
+              $(".data").fadeIn("slow");
+            });
+          });
+
+          /* --------------------Recovered Click Listener-------------------- */
+
+          $(".recovered-option").click(() => {
+            $(".recovered-option").addClass("selected");
+            $(".text-recovered > a").css("color", "var(--recovered)");
+            $(".text-confirmed > a").removeAttr("style");
+            $(".text-deaths > a").removeAttr("style");
+
+            $(".confirmed-option").removeClass("selected");
+            $(".deaths-option").removeClass("selected");
+
+            $(".data").fadeOut("slow", () => {
+              $(".data").html(
+                `${totalCasesByMonth.Recovered.toLocaleString(
+                  "en"
+                )} <em>ppl.<em>`
+              );
+              $(".data").fadeIn("slow");
+            });
+          });
+
+          /* --------------------Deaths Click Listener-------------------- */
+
+          $(".deaths-option").click(() => {
+            $(".deaths-option").addClass("selected");
+            $(".text-deaths > a").css("color", "var(--deaths)");
+            $(".text-confirmed > a").removeAttr("style");
+            $(".text-recovered > a").removeAttr("style");
+
+            $(".confirmed-option").removeClass("selected");
+            $(".recovered-option").removeClass("selected");
+
+            $(".data").fadeOut("slow", () => {
+              $(".data").html(
+                `${totalCasesByMonth.Deaths.toLocaleString("en")} <em>ppl.<em>`
+              );
+              $(".data").fadeIn("slow");
+            });
+          });
         }
-
-        function pushData(item) {
-          myChart.data.datasets[0].data.push(dataPerMonth[item].Active);
-          myChart.data.datasets[1].data.push(dataPerMonth[item].Confirmed);
-          myChart.data.datasets[2].data.push(dataPerMonth[item].Recovered);
-          myChart.data.datasets[3].data.push(dataPerMonth[item].Deaths);
-          myChart.update();
-        }
-
-        Object.keys(dataPerMonth).forEach((element) => {
-          console.log("chart lables: ", myChart.data.labels);
-
-          switch (element.slice(5, 7)) {
-            case "01":
-              myChart.data.labels.push(`Jan - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "02":
-              myChart.data.labels.push(`Feb - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "03":
-              myChart.data.labels.push(`Mar - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "04":
-              myChart.data.labels.push(`Apr - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "05":
-              console.log("dias");
-              myChart.data.labels.push(`May - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "06":
-              myChart.data.labels.push(`Jun - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "07":
-              myChart.data.labels.push(`Jul - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "08":
-              myChart.data.labels.push(`Aug - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "09":
-              myChart.data.labels.push(`Sept - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "10":
-              myChart.data.labels.push(`Oct - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "11":
-              myChart.data.labels.push(`Nov - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-            case "12":
-              myChart.data.labels.push(`Dec - ${dataPerMonth[element].Date}`);
-              pushData(element);
-              break;
-          }
-
-          console.log(dataPerMonth);
-        });
-
-        /* mobile view */
-
-        console.log(
-          "last element",
-          data[data.length - 1].Date.slice(0, 10).replace(/-/g, "/")
-        );
-
-        $(".dataDate").text(
-          data[data.length - 1].Date.slice(0, 10).replace(/-/g, "/")
-        );
-
-        const totalCasesByMonth = {};
-
-        data.forEach((element) => {
-          if (totalCasesByMonth.Deaths) {
-            totalCasesByMonth["Deaths"] += element.Deaths;
-            console.log(typeof element.Deaths, "muertes: ", element.Deaths);
-            totalCasesByMonth["Confirmed"] += element.Confirmed;
-            totalCasesByMonth["Recovered"] += element.Recovered;
-          } else {
-            totalCasesByMonth["Deaths"] = element.Deaths;
-            totalCasesByMonth["Confirmed"] = element.Confirmed;
-            totalCasesByMonth["Recovered"] = element.Recovered;
-          }
-        });
-
-        $(".data").html(
-          `${totalCasesByMonth.Confirmed.toLocaleString("en")} <em>ppl.<em>`
-        );
-
-        $(".confirmed-option").click(() => {
-          $(".confirmed-option").addClass("selected");
-          $(".text-confirmed > a").css("color", "var(--confirmed)");
-          $(".text-recovered > a").removeAttr("style");
-          $(".text-deaths > a").removeAttr("style");
-
-          $(".recovered-option").removeClass("selected");
-          $(".deaths-option").removeClass("selected");
-
-          $(".data").fadeOut("slow", () => {
-            $(".data").html(
-              `${totalCasesByMonth.Confirmed.toLocaleString("en")} <em>ppl.<em>`
-            );
-            $(".data").fadeIn("slow");
-          });
-        });
-
-        /* recovered click listener */
-        $(".recovered-option").click(() => {
-          $(".recovered-option").addClass("selected");
-          $(".text-recovered > a").css("color", "var(--recovered)");
-          $(".text-confirmed > a").removeAttr("style");
-          $(".text-deaths > a").removeAttr("style");
-
-          $(".confirmed-option").removeClass("selected");
-          $(".deaths-option").removeClass("selected");
-
-          $(".data").fadeOut("slow", () => {
-            $(".data").html(
-              `${totalCasesByMonth.Recovered.toLocaleString("en")} <em>ppl.<em>`
-            );
-            $(".data").fadeIn("slow");
-          });
-        });
-
-        /* deaths click listener */
-        $(".deaths-option").click(() => {
-          $(".deaths-option").addClass("selected");
-          $(".text-deaths > a").css("color", "var(--deaths)");
-          $(".text-confirmed > a").removeAttr("style");
-          $(".text-recovered > a").removeAttr("style");
-
-          $(".confirmed-option").removeClass("selected");
-          $(".recovered-option").removeClass("selected");
-
-          $(".data").fadeOut("slow", () => {
-            $(".data").html(
-              `${totalCasesByMonth.Deaths.toLocaleString("en")} <em>ppl.<em>`
-            );
-            $(".data").fadeIn("slow");
-          });
-        });
-
-        console.log("mobile refined data: ", totalCasesByMonth);
       },
       error: (jqXHR, textStatus, errorThrown) => {
-        $(".errorTitle").text(
-          "There has been a problem, please refresh your browser or try again later."
-        );
-        $("#myChart").removeClass("d-md-block");
-        $(".errorRow").show();
+        if ($(window).width() > 425) {
+          $(".errorTitle").text(
+            "There has been a problem, please refresh your browser or try again later."
+          );
+          $("#myChart").removeClass("d-md-block");
+          $(".errorRow").show();
+        } else {
+          $(".data").text(
+            "There has been a problem, please refresh your browser or try again later."
+          );
+        }
       },
     });
   });

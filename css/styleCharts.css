@@ -1,6 +1,7 @@
 @import "neu.css";
 @import "styleIndex.css";
 
+/* --------------------Desktop Menu Appearance-------------------- */
 .homeLi{
 
     background: var(--gradient-neu-conv-second-color);
@@ -14,9 +15,3 @@
 
 }
 
-.errorTitle{
-    font-family: calculator;
-    color: var(--third-backgorund);
-    font-size:40px;
-    letter-spacing: 1px;
-}

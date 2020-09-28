@@ -1,8 +1,7 @@
 $(function () {
   /* --------------------Mobile Menu Click Listener-------------------- */
   $(".mobileMenu").click(() => {
-    console.log($(".mobile-container").attr("class"));
-
+    
     $(".mobileLinks").toggle(1000);
 
     if (!$(".mobile-container").hasClass("fow")) {
@@ -19,7 +18,6 @@ $(function () {
         "box-shadow": "var(--shadow-neu-down-third-color)",
       });
     } else {
-      console.log("else statement");
 
       $(".fow").addClass("back");
       $(".fow").removeClass("fow");
@@ -124,7 +122,7 @@ $(function () {
     success: (data) => {
       $(".initialOption").text("Choose...");
 
-      /* -------------------- */
+      /* --------------------Data Arangement-------------------- */
       let countries = {};
       data.forEach((element) => {
         countries[element.Country] = element.Slug;

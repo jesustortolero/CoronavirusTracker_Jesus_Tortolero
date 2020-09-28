@@ -2,7 +2,6 @@ $(function () {
 
   /* --------------------Mobile Menu Click Listener-------------------- */
   $(".mobileMenu").click(() => {
-    console.log($(".mobile-container").attr("class"));
 
     $(".mobileLinks").toggle(1000);
 
@@ -20,7 +19,6 @@ $(function () {
         "box-shadow": "var(--shadow-neu-down-third-color)",
       });
     } else {
-      console.log("else statement");
 
       $(".fow").addClass("back");
       $(".fow").removeClass("fow");

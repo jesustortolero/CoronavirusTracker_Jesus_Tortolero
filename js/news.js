@@ -1,7 +1,6 @@
 $(function () {
 
-  /* --------------------Mobile Menu-------------------- */
-  /* --------------------Mobile Menu Click Listener-------------------- */
+    /* --------------------Mobile Menu Click Listener-------------------- */
   $(".mobileMenu").click(() => {
     console.log($(".mobile-container").attr("class"));
 
@@ -23,38 +22,6 @@ $(function () {
     } else {
       console.log("else statement");
 
-      $(".fow").addClass("back");
-      $(".fow").removeClass("fow");
-      
-          $(".animate").removeAttr("style");
-          $(".mobileMenu").removeAttr("style");
-          $(".mobile-container").removeAttr("style");
-          $(".secondTitle").removeAttr("style");
-          $(".mobile-container").removeClass("back");
-    }
-  });
-
-  /* --------------------mobile menu click listener-------------------- */
-  $(".mobileMenu").click(() => {
-
-    $(".mobileLinks").toggle(1000);
-
-
-    /* ---------------------Animation Class Assignment--------------------- */
-    if (!$(".mobile-container").hasClass("fow")) {
-      $(".mobile-container").addClass("fow");
-      $(".mobile-container").css({
-        right: "2.5%",
-        position: "fixed",
-      });
-
-      $(".secondTitle").css("margin-top", "145px");
-
-      $(".mobileMenu").css({
-        background: "var(--gradient-neu-conc-third-color)",
-        "box-shadow": "var(--shadow-neu-down-third-color)",
-      });
-    } else {
       $(".fow").addClass("back");
       $(".fow").removeClass("fow");
 

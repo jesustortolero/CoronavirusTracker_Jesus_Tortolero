@@ -1,10 +1,6 @@
 $(function () {
 
-<<<<<<< HEAD
   /* --------------------Mobile Menu Click Listener-------------------- */
-=======
-    /* --------------------Mobile Menu Click Listener-------------------- */
->>>>>>> ea8d00777d815204966eb5695b90a9f14c48969b
   $(".mobileMenu").click(() => {
     console.log($(".mobile-container").attr("class"));
 
@@ -28,21 +24,12 @@ $(function () {
 
       $(".fow").addClass("back");
       $(".fow").removeClass("fow");
-<<<<<<< HEAD
       
           $(".animate").removeAttr("style");
           $(".mobileMenu").removeAttr("style");
           $(".mobile-container").removeAttr("style");
           $(".secondTitle").removeAttr("style");
           $(".mobile-container").removeClass("back");
-=======
-
-      $(".animate").removeAttr("style");
-      $(".mobileMenu").removeAttr("style");
-      $(".mobile-container").removeAttr("style");
-      $(".secondTitle").removeAttr("style");
-      $(".mobile-container").removeClass("back");
->>>>>>> ea8d00777d815204966eb5695b90a9f14c48969b
     }
   });
 
